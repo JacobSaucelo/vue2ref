@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1, initial-scale=1.0" />
+    <title>vue input</title>
+  </head>
+  <body>
+    <div id="root">
+      <h1>{{message}}</h1>
+      <h1>texts: {{texts}}</h1>
+
+      <input type="text" id="input" v-model="texts" />
+
+      <hr />
+      <h1>pets</h1>
+      <ul>
+        <h5>default</h5>
+        <li v-for="pet in pets">{{pet}}</li>
+        <hr />
+        <h5>v text</h5>
+        <li v-for="pet in pets" v-text="pet"></li>
+      </ul>
+
+      <button @click="handleAdd">add user</button>
+    </div>
+
+    <h1>this is vue input</h1>
+  </body>
+  <script src="https://unpkg.com/vue@2.1.3/dist/vue.js"></script>
+
+  <script>
+    let data = {
+      message: "this is a certified hood classic",
+      texts: "",
+      pets: ["dog", "cat", "crocodile", "birb"],
+    };
+
+    new Vue({
+      el: "#root",
+      data: data,
+
+      methods: {
+        handleAdd() {
+          if (!this.texts) return;
+          this.pets.push(this.texts);
+          this.texts = "";
+        },
+      },
+    });
+  </script>
+</html>
